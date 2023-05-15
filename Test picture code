@@ -1,0 +1,22 @@
+img_paths = ['/content/plant4.jpg', '/content/test7.jpg', '/content/test3.jpg','/content/test8.jpg','/content/test9.jpg','/content/plant2.jpg','/content/plant3.jpg',]
+
+#yazan alhuwaitat
+
+# Loop over the images and make predictions
+for img_path in img_paths:
+    # Load and preprocess the image
+    img = cv2.imread(img_path)
+    img = cv2.resize(img, img_size)
+    img = img.astype('float32') / 255.0
+
+#yazan alhuwaitat
+
+    # Get the model's prediction for the new image
+    pred = model.predict(np.expand_dims(img, axis=0))[0]
+    label_idx = np.argmax(pred)
+    label = class_labels[label_idx]
+
+#yazan alhuwaitat
+
+    # Print the predicted label for each image
+    print('Predicted label for {}: {}'.format(img_path, label))
